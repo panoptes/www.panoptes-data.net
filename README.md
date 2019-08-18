@@ -1,10 +1,7 @@
 # POE - PANOPTES Observations Explorer
 <a id="observations-explorer"></a>
 
-A simple table display of the Observations. This reads JSON files that are provided
-via the [Observations Data CF](#observations-data)
-
-See [README](observations-explorer/README.md).
+A simple table display of the Observations.
 
 ## Deploy
 <a href="#" id="deploy"></a>

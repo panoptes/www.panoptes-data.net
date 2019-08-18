@@ -20,11 +20,14 @@ These are default instructions for compiling a node site. See [deploy](#deploy)
 for a convenient way to update POE.
 
 ## Project setup
+
+This needs to be run once in order to install all the required modules.
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for local development
 ```
 npm run serve
 ```

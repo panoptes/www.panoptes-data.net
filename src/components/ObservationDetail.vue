@@ -110,7 +110,7 @@ export default {
       this.images = this.info.images
 
       this.files = this.info.sequence_files
-      if (this.files !== undefined) {
+      if (this.files !== undefined && this.files.jpg !== undefined) {
         this.jpg_files = this.files.jpg
         this.thumbUrl = this.files.jpg[0]
         this.timelapseUrl = ''

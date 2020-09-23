@@ -1,5 +1,6 @@
 #!/bin/bash -e
 
-npm run build
-gsutil rsync -R dist gs://www.panoptes-data.net/
-gsutil acl ch -u AllUsers:R -r gs://www.panoptes-data.net/
+SERVICE=${1:-data-explorer}
+TAG=${1:-develop}
+
+gcloud builds submit --substitutions "_SERVICE=${SERVICE},_TAG=${TAG}" .

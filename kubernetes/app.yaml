@@ -21,16 +21,16 @@ spec:
         app: data-explorer
     spec:
       containers:
-        - image: gcr.io/panoptes-exp/github.com/panoptes/panoptes-data-explorer
+        - image: gcr.io/panoptes-exp/github.com/panoptes/www.panoptes-data.net
           imagePullPolicy: IfNotPresent
-          name: data-explorer-1
+          name: panoptes-data-explorer-sha256-1
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
     app: data-explorer
-  name: data-explorer-hpa-nhsr
+  name: data-explorer-hpa-tnuy
   namespace: default
 spec:
   maxReplicas: 5
@@ -44,23 +44,3 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: data-explorer
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: data-explorer
-  name: data-explorer-service
-  namespace: default
-spec:
-  clusterIP: 10.0.27.219
-  externalTrafficPolicy: Cluster
-  ports:
-    - nodePort: 32598
-      port: 80
-      protocol: TCP
-      targetPort: 80
-  selector:
-    app: data-explorer
-  sessionAffinity: None
-  type: NodePort

@@ -29,4 +29,4 @@ steps:
       - "www.panoptes-data.net"
     waitFor: [ "clone-repo", "pull-cached-image" ]
 images:
-  - "--tag=gcr.io/${PROJECT_ID}/${_IMAGE_NAME}:${_TAG}"
+  - "gcr.io/${PROJECT_ID}/${_IMAGE_NAME}:${_TAG}"

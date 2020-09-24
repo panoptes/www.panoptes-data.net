@@ -1,10 +1,12 @@
+options:
+  substitutionOption: "ALLOW_LOOSE"
 substitutions:
   _TAG: develop
   _SERVICE: panoptes-data-explorer
   _BUILD_DIR: "${PWD}"
 steps:
   # Build
-  - name: 'docker'
+  - name: 'gcr.io/cloud-builders/docker'
     id: 'base'
     args:
       - 'build'

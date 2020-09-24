@@ -2,16 +2,35 @@ options:
   substitutionOption: "ALLOW_LOOSE"
 substitutions:
   _TAG: develop
-  _SERVICE: panoptes-data-explorer
-  _BUILD_DIR: "${PWD}"
+  _IMAGE_NAME: panoptes-data-explorer
+  _REPO_URL: https://github.com/panoptes/www.panoptes-data.net
+
 steps:
-  # Build
+  # Fetch the repo from github
+  - name: gcr.io/cloud-builders/git
+    id: "clone-repo"
+    args: [ "clone", "${_REPO_URL}" ]
+    waitFor: [ "-" ]
+
+  # Pull the cached image.
+  - name: 'gcr.io/cloud-builders/docker'
+    id: "pull-cached-image"
+    entrypoint: 'bash'
+    args: [ '-c', 'docker pull gcr.io/${PROJECT_ID}/${_IMAGE_NAME}:${_TAG} || exit 0' ]
+    waitFor: [ "-" ]
+
+  # Build with cloned panoptes-utils as source directory
   - name: "gcr.io/cloud-builders/docker"
-    id: "base"
+    id: "build-images"
+    env:
+      - "DOCKER_CLI_EXPERIMENTAL=enabled"
     args:
+      - "buildx"
       - "build"
-      - "--build-arg=tag=${_TAG}"
-      - "--tag=gcr.io/${PROJECT_ID}/${_SERVICE}:${_TAG}"
-      - "${_BUILD_DIR}"
-images:
-  - "gcr.io/${PROJECT_ID}/${_SERVICE}:${_TAG}"
+      - "--push"
+      - "--platform=${_PLATFORMS}"
+      - "-f=docker/Dockerfile"
+      - "--tag=gcr.io/${PROJECT_ID}/${_IMAGE_NAME}:${_TAG}"
+      - "--cache-from=gcr.io/${PROJECT_ID}/${_IMAGE_NAME}:${_TAG}"
+      - "POCS"
+    waitFor: [ "clone-repo", "pull-cached-images" ]

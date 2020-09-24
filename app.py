@@ -7,8 +7,8 @@ from bokeh.server.server import Server
 from flask import Flask, render_template
 from tornado.ioloop import IOLoop
 
-from .modules.observations import ObservationsExplorer
-from .modules.stats import Stats
+from modules.observations import ObservationsExplorer
+from modules.stats import Stats
 
 public_app_url = os.getenv('PUBLIC_APP_URL', 'https://www.panoptes-data.net/')
 base_app_url = os.getenv('BOKEH_APP_URL', 'https://www.panoptes-data.net/app')

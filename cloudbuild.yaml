@@ -10,8 +10,8 @@ steps:
     id: "base"
     args:
       - "build"
-      - "--push"
       - "--build-arg=tag=${_TAG}"
       - "--tag=gcr.io/${PROJECT_ID}/${_SERVICE}:${_TAG}"
       - "${_BUILD_DIR}"
-
+images:
+  - "gcr.io/${PROJECT_ID}/${_SERVICE}:${_TAG}"

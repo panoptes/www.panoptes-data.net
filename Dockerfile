@@ -1,6 +1,8 @@
 ARG tag=latest
 FROM gcr.io/panoptes-exp/panoptes-utils:$tag
 
+ARG conda_dir=/var/panoptes/conda/envs/panoptes/bin/
+
 ENV PORT 8080
 ENV PANUSER panoptes
 WORKDIR /app

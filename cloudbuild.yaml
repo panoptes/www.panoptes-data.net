@@ -6,11 +6,12 @@ substitutions:
   _BUILD_DIR: "${PWD}"
 steps:
   # Build
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'base'
+  - name: "gcr.io/cloud-builders/docker"
+    id: "base"
     args:
-      - 'build'
-      - '--push'
-      - '--build-arg=tag=${_TAG}'
-      - '--tag=gcr.io/${PROJECT_ID}/${_SERVICE}:${_TAG}'
-      - '${_BUILD_DIR}'
+      - "build"
+      - "--push"
+      - "--build-arg=tag=${_TAG}"
+      - "--tag=gcr.io/${PROJECT_ID}/${_SERVICE}:${_TAG}"
+      - "${_BUILD_DIR}"
+

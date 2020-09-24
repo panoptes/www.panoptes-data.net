@@ -1,6 +1,6 @@
 substitutions:
   _TAG: develop
-  _SERVICE: data-explorer
+  _SERVICE: panoptes-data-explorer
   _BUILD_DIR: "${PWD}"
 steps:
   # Build

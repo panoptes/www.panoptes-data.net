@@ -5,7 +5,7 @@ import pandas as pd  # noqa
 import panel as pn
 import param
 from astropy.utils.data import download_file
-from panoptes.utils.logger import logger
+from panoptes.utils.logging import logger
 
 logger.enable('panoptes')
 

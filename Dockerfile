@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Data Explorer requirements
 COPY ./requirements.txt .
 USER $PANUSER
-RUN pip install -U pip && \
-    pip install --no-cache-dir -r requirements.txt
+RUN "${conda_dir}/pip" install -U pip && \
+    "${conda_dir}/pip" install --no-cache-dir -r requirements.txt
 
 # Cleanup apt.
 USER root
@@ -35,4 +35,4 @@ EXPOSE $PORT
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY --chown=panoptes:panoptes . .
 
-CMD ./startup_script.sh
+CMD ["./startup_script.sh"]

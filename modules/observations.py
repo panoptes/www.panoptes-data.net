@@ -10,7 +10,7 @@ from astropy.coordinates import SkyCoord
 from astropy.utils.data import download_file
 from bokeh.models import (ColumnDataSource, DataTable, TableColumn, NumberFormatter, DateFormatter)
 from panoptes.utils.data import search_observations, get_metadata
-from panoptes.utils.logger import logger
+from panoptes.utils.logging import logger
 
 logger.enable('panoptes')
 pn.extension()

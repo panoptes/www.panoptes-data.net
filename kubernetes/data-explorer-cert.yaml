@@ -1,0 +1,9 @@
+apiVersion: networking.gke.io/v1beta2
+kind: ManagedCertificate
+metadata:
+  name: data-explorer-cert
+spec:
+  domains:
+    - www.panoptes-data.net
+    - panoptes-data.net
+    - data.projectpanoptes.org

@@ -10,7 +10,8 @@ from tornado.ioloop import IOLoop
 from .modules.observations import ObservationsExplorer
 from .modules.stats import Stats
 
-public_app_url = os.getenv('PUBLIC_APP_URL', 'https://data.projectpanoptes.org/')
+public_app_url = os.getenv('PUBLIC_APP_URL', 'https://www.panoptes-data.net/')
+base_app_url = os.getenv('BOKEH_APP_URL', 'https://www.panoptes-data.net/app')
 
 app = Flask(__name__)
 
@@ -92,8 +93,6 @@ def data_explorer_app(doc):
 
 @app.route('/', methods=['GET'])
 def bkapp_page():
-    base_app_url = os.getenv('BOKEH_APP_URL', 'https://www.panoptes-data.net/app')
-
     bokeh_script = server_document(base_app_url, relative_urls=True)
     return render_template("main.html", bokeh_script=bokeh_script, template="Flask")
 

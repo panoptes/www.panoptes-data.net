@@ -1,0 +1,9 @@
+astropy
+bokeh
+flask
+flask-cors
+hvplot
+pandas
+panel
+panoptes-utils>=0.2.28
+pendulum

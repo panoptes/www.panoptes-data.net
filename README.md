@@ -1,53 +1,51 @@
-# POE - PANOPTES Observations Explorer
-<a id="observations-explorer"></a>
+Data Explorer
+-------------
 
-A simple table display of the Observations.
+https://www.panoptes-data.net
 
-## Deploy
-<a href="#" id="deploy"></a>
+This folder defines a Data Explorer dashboard web service that is main portal for
+accessing PANOPTES data.  
 
-The [deploy.sh](deploy.sh) script offers a convenient way to build the site for
-production, transfer to the appropriate bucket, and update the permission on the
-bucket for public viewing.  Run via:
+This service primarily utilizes the [holoviz.org](https://holoviz.org) ecosystem for
+visualization and data interaction.
+
+Each component of the Data Explorer is split into separation "modules", which can be
+developed independently of the web service. Modules can be developed, and used, in
+jupyter notebooks. 
+
+## Development
+
+### Docker
+
+The web service is prepared as a docker image, which is the service running at
+https://www.panoptes-data.net.
+
+To develop and run locally:
+
+```bash
+docker build -t data-explorer:develop .
+docker run \
+    --rm \
+    --name data-explorer \
+    -p 8080:80 \
+    -e BOKEH_APP_URL=http://127.0.0.1:8080/app \
+    data-explorer:develop
+```
+
+This will make the service available at https://127.0.0.1:8080.
+
+There are two environment variables that can route the traffic depending on your needs.
+
+`BOKEH_APP_URL=127.0.0.1:5006`: Defines the link between the Flask app and the Bokeh app.
+This should be entered as an environment variable like in the example above. You need
+to include this but probably don't need to change it.
+
+### Deploy
+
+See [Deployment](../README.md#deploy) in main README for preferred deployment method.
+
+Basically, you can:
 
 ```bash
 ./deploy.sh
-```
-
-## Node instructions
-
-These are default instructions for compiling a node site. See [deploy](#deploy)
-for a convenient way to update POE.
-
-## Project setup
-
-This needs to be run once in order to install all the required modules.
-
-```
-npm install
-```
-
-### Compiles and hot-reloads for local development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
 ```
